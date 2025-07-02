@@ -1,4 +1,6 @@
 import { google } from "googleapis";
+import env from "dotenv";
+env.config();
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
@@ -29,7 +31,7 @@ export const createEvent = async (booking) => {
       timeZone: booking.timezone,
     },
   };
-  await calendar.events.insert({
+  calendar.events.insert({
     calendarId: "primary",
     resource: event,
   });
